@@ -4,6 +4,18 @@ import { Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
 import { ErrorBoundary } from './error-boundary';
 import { colors } from '@/constants/colors';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+// Create a client
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 2,
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -20,20 +32,22 @@ export default function RootLayout() {
 
   return (
     <ErrorBoundary>
-      <Stack
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: colors.background,
-          },
-          headerTintColor: colors.primary,
-          headerTitleStyle: {
-            fontWeight: '600',
-          },
-          contentStyle: {
-            backgroundColor: colors.background,
-          },
-        }}
-      />
+      <QueryClientProvider client={queryClient}>
+        <Stack
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: colors.background,
+            },
+            headerTintColor: colors.primary,
+            headerTitleStyle: {
+              fontWeight: '600',
+            },
+            contentStyle: {
+              backgroundColor: colors.background,
+            },
+          }}
+        />
+      </QueryClientProvider>
     </ErrorBoundary>
   );
 }

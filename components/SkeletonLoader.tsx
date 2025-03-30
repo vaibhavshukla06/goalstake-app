@@ -124,6 +124,88 @@ export const SkeletonList: React.FC<SkeletonListProps> = ({
   );
 };
 
+// Challenge list skeleton
+export const SkeletonChallengeList: React.FC<SkeletonListProps> = ({
+  count = 3,
+  style
+}) => {
+  return (
+    <View style={[styles.list, style]}>
+      {Array.from({ length: count }).map((_, index) => (
+        <View key={index} style={styles.challengeCard}>
+          <View style={styles.challengeHeader}>
+            <Skeleton width={80} height={24} borderRadius={12} />
+            <Skeleton width={60} height={24} borderRadius={4} />
+          </View>
+          <Skeleton width="90%" height={20} style={{ marginTop: 12 }} />
+          <Skeleton width="70%" height={16} style={{ marginTop: 8 }} />
+          <View style={styles.challengeMeta}>
+            <Skeleton width={80} height={12} />
+            <Skeleton width={80} height={12} />
+          </View>
+          <Skeleton width="100%" height={8} style={{ marginTop: 16, marginBottom: 4 }} />
+          <View style={styles.challengeActions}>
+            <Skeleton width="45%" height={36} borderRadius={8} />
+            <Skeleton width="45%" height={36} borderRadius={8} />
+          </View>
+        </View>
+      ))}
+    </View>
+  );
+};
+
+// Profile skeleton
+export const SkeletonProfile: React.FC<{style?: ViewStyle}> = ({ style }) => {
+  return (
+    <View style={[styles.profile, style]}>
+      <Skeleton width={80} height={80} borderRadius={40} style={styles.avatar} />
+      <Skeleton width={150} height={24} style={{ marginTop: 16 }} />
+      <Skeleton width={100} height={16} style={{ marginTop: 8 }} />
+      
+      <View style={styles.stats}>
+        <View style={styles.statItem}>
+          <Skeleton width={50} height={24} />
+          <Skeleton width={80} height={16} style={{ marginTop: 4 }} />
+        </View>
+        <View style={styles.statItem}>
+          <Skeleton width={50} height={24} />
+          <Skeleton width={80} height={16} style={{ marginTop: 4 }} />
+        </View>
+        <View style={styles.statItem}>
+          <Skeleton width={50} height={24} />
+          <Skeleton width={80} height={16} style={{ marginTop: 4 }} />
+        </View>
+      </View>
+    </View>
+  );
+};
+
+// Main SkeletonLoader component with different types
+interface SkeletonLoaderProps {
+  type?: 'card' | 'list' | 'challenge-list' | 'profile';
+  count?: number;
+  style?: ViewStyle;
+}
+
+const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
+  type = 'card',
+  count = 3,
+  style
+}) => {
+  switch (type) {
+    case 'card':
+      return <SkeletonCard style={style} />;
+    case 'list':
+      return <SkeletonList count={count} style={style} />;
+    case 'challenge-list':
+      return <SkeletonChallengeList count={count} style={style} />;
+    case 'profile':
+      return <SkeletonProfile style={style} />;
+    default:
+      return <SkeletonCard style={style} />;
+  }
+};
+
 const styles = StyleSheet.create({
   skeleton: {
     backgroundColor: colors.border,
@@ -147,4 +229,45 @@ const styles = StyleSheet.create({
   list: {
     width: '100%',
   },
+  challengeCard: {
+    backgroundColor: colors.cardBackground || colors.card || '#ffffff',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  challengeHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 12,
+  },
+  challengeMeta: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 16,
+  },
+  challengeActions: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 16,
+  },
+  profile: {
+    alignItems: 'center',
+    padding: 16,
+  },
+  avatar: {
+    alignSelf: 'center',
+  },
+  stats: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+    marginTop: 24,
+  },
+  statItem: {
+    alignItems: 'center',
+  },
 });
+
+export default SkeletonLoader;
