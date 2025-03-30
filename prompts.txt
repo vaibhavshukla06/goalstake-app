@@ -1,0 +1,457 @@
+# GoalStake App Development Prompts - Enhanced Version
+
+## Phase 1: Project Setup & Foundation
+
+### 1. Project Initialization & Modern Architecture
+
+"Create a new React Native project using Expo for my accountability app called GoalStake. Implement with:
+- Expo SDK 52+ with TypeScript and strict mode enabled
+- React Navigation v7 with typed routes and deep linking support
+- Supabase JS client v2.30+ with proper connection handling and retry logic
+- Environment management using dotenv and app.config.js with automatic type generation
+- Module resolution with path aliases (@components, @screens, etc.) via babel-plugin-module-resolver
+- NativeWind 4+ with Tailwind JIT compilation for styling
+- Error boundary implementation with Sentry integration
+- Implement proper development, staging and production environments
+- CI/CD setup with GitHub Actions for automatic testing
+- Add Husky with pre-commit hooks for linting and type-checking"
+
+### 2. App Structure & State Management
+
+"Set up the core architecture for GoalStake with:
+- Clean architecture principles separating UI, domain logic, and data layers
+- Domain-driven design approach with core entities (User, Challenge, Stake)
+- Zustand for global state management with typed stores and persistence
+- React Query for server state management with optimistic updates
+- Custom hooks for reusable business logic
+- Context API for auth state with proper token refresh handling
+- Suspense-based data fetching with error boundaries
+- Implement React Native performance monitoring
+- Component library with Storybook documentation
+- Atomic design principles for component organization"
+
+### 3. Supabase Backend & Database Schema
+
+"Set up a production-ready Supabase backend for GoalStake with:
+- Multi-environment project setup (dev/staging/prod)
+- Comprehensive database schema with proper foreign key constraints:
+  * users: profile data, settings, and preferences
+  * challenges: core challenge data with various challenge types
+  * stakes: financial commitments with status tracking
+  * participants: many-to-many relationship for user-challenge participation
+  * verifications: proof submissions with metadata
+  * transactions: complete financial history with status
+- Implement row-level security (RLS) policies with thorough testing
+- Database triggers for automated calculations and notifications
+- Implement proper indexing strategy for query optimization
+- Set up real-time subscriptions for collaborative features
+- Create database migrations for version control
+- Generate TypeScript types from database schema using supabase-js codegen
+- Implement edge functions for sensitive operations"
+
+### 4. Authentication & Security Implementation
+
+"Implement enterprise-grade authentication using Supabase Auth with:
+- Multi-factor authentication support (SMS, authenticator app)
+- Social auth providers (Google, Apple, Discord) with proper error handling
+- Custom sign-up flow with email verification requirements
+- JWT handling with secure storage (Expo SecureStore)
+- Silent token refresh mechanism with refresh tokens
+- Passwordless magic link authentication option
+- Session persistence across app restarts
+- Proper logout across all devices capability
+- Comprehensive auth state provider with loading/error states
+- Rate limiting for authentication attempts
+- Account recovery flow with security questions"
+
+### 5. Navigation & App Flow Architecture
+
+"Implement a modern navigation architecture using React Navigation v7:
+- TypeScript-defined navigation tree with route parameters
+- Authentication flow with protected routes and auth guards
+- Deep linking configuration for web URLs and app links
+- Tab navigator with custom animated tab bar
+- Modal stack for overlay workflows (challenge creation, etc.)
+- Header customization with dynamic content and actions
+- Gesture handling for navigation interactions
+- Navigation state persistence for session resumption
+- Navigation analytics with screen view tracking
+- Accessibility considerations in navigation elements
+- Splash screen to navigation transition optimization"
+
+## Phase 2: Core Features Implementation
+
+### 6. User Profile & Account Management
+
+"Create a comprehensive user profile system with:
+- Dynamic profile screen with editable sections
+- Avatar management with image editing, cropping and upload optimization
+- Form validation using Zod or Yup with real-time feedback
+- Two-way sync with Supabase with conflict resolution
+- Account deletion flow with data handling compliance
+- Profile visibility and privacy settings
+- Data export functionality for GDPR compliance
+- Achievement system integration with profile badges
+- Challenge history visualization with statistics
+- Theme preferences with system/light/dark options
+- Optimistic UI updates with elegant failure handling
+- Connection with health tracking platforms (optional)"
+
+### 7. Virtual Currency & Transaction System
+
+"Implement a robust virtual currency system with:
+- Atomic transaction processing with ACID compliance
+- Double-entry bookkeeping system for financial integrity
+- Balance history with time series visualization
+- Transaction queue for offline operation support
+- Server-side validation with transaction signing
+- Rate limiting to prevent abuse
+- Webhook integration for external payment providers
+- Supabase edge functions for secure balance operations
+- Transaction status monitoring and notifications
+- Detailed receipt generation for completed transactions
+- Escrow mechanism for challenge stakes
+- Comprehensive audit logging for all financial operations"
+
+### 8. Challenge Creation & Management
+
+"Develop a flexible challenge creation system with:
+- Multi-step form with progress persistence
+- Rich text editor for challenge descriptions
+- Challenge templates for quick creation
+- Dynamic form fields based on challenge type
+- Duration selection with visualization (calendar view)
+- Stake amount input with minimum/maximum validation
+- Public/private/invite-only visibility options
+- Challenge rules creation with customizable verification requirements
+- Participation limit settings with waitlist functionality
+- Challenge preview with mobile-responsive layout
+- Scheduled challenge publication option
+- Challenge duplication functionality for repeating challenges
+- Image/media attachment capabilities for challenge context
+- Tag system for categorization and discovery"
+
+### 9. Challenge Discovery & Exploration
+
+"Create an engaging challenge discovery experience with:
+- Filterable feed with intelligent sorting options
+- Category-based browsing with visual indicators
+- Search functionality with fuzzy matching and relevance scoring
+- Recommendation engine based on user preferences and history
+- Challenge card component with progress visualization
+- Infinite scrolling with efficient data fetching
+- Detailed challenge view with expandable sections
+- Participant list with real-time status indicators
+- Sharing functionality with preview cards
+- Challenge joining flow with clear stake explanation
+- Upcoming challenge reminder system
+- Integration with device calendar
+- Save/bookmark functionality for interested users
+- Similar challenges recommendation"
+
+### 10. Challenge Participation & Progress Tracking
+
+"Implement a comprehensive participation system with:
+- Joining flow with stake payment and terms acceptance
+- Progress dashboard with visualization appropriate to challenge type
+- Daily/weekly targets with progress indicators
+- Streak tracking with calendar view visualization
+- Custom notification scheduling for reminders
+- Quick check-in functionality for habit challenges
+- Progress sharing with social media integration
+- Team/group challenges with collaborative tracking
+- Verification submission interface with guidance
+- Offline progress recording with background sync
+- Withdrawal option with configured consequences
+- Extension requests for special circumstances
+- API integration with fitness trackers (if applicable)
+- Achievement unlocking tied to participation milestones"
+
+## Phase 3: Progress Tracking & Verification
+
+### 11. Health & Fitness API Integration
+
+"Implement a comprehensive health data integration system with:
+- Cross-platform health API integration (HealthKit/Google Fit/Samsung Health)
+- Granular permission request UI with clear purpose explanations
+- Background synchronization with battery optimization
+- Custom health metrics tracking beyond platform APIs
+- Data aggregation and normalization across sources
+- Offline caching with conflict resolution
+- Historical data import for baseline establishment
+- Custom calculation for challenge-specific metrics
+- Health data visualization with comparison to goals
+- Privacy-focused data handling with local processing
+- Fallback manual entry for unsupported devices
+- Wear OS/watchOS companion app integration
+- Export functionality for personal records
+- Integration with popular fitness apps (Strava, etc.)"
+
+### 12. Progress Input & Evidence System
+
+"Create a flexible evidence submission system with:
+- Multi-format proof collection (photos, videos, text, GPS)
+- Media capture with in-app camera and verification markers
+- Timestamping and geolocation tagging for verification
+- OCR integration for text extraction from receipts/documents
+- AI-assisted categorization of submitted evidence
+- Secure cloud storage with access control
+- Evidence review interface with approve/reject workflow
+- Dispute resolution system with mediator role
+- Batch submission for multiple check-ins
+- Progress history with timeline visualization
+- Edit history tracking for submission integrity
+- Offline submission queue with background processing
+- Video compression with maintained quality
+- Storage management with quota monitoring"
+
+### 13. Verification & Accountability System
+
+"Build a robust verification system with:
+- Automated verification using data APIs when possible
+- AI-assisted fraud detection for submitted evidence
+- Peer verification workflow for social accountability
+- Verification queue management with status tracking
+- Random verification requirements to prevent predictable cheating
+- Tiered verification based on stake amount
+- Evidence assessment rubrics for consistent evaluation
+- Appeal process for rejected submissions
+- Admin dashboard for verification management
+- Audit trail for all verification actions
+- Verification delegations for team challenges
+- Performance metrics for verification processing
+- Configurable verification thresholds per challenge type
+- Anomaly detection for suspicious patterns"
+
+## Phase 4: Social & Engagement Features
+
+### 14. Real-time Leaderboards & Competition
+
+"Implement engaging leaderboards using Supabase Realtime with:
+- Global, challenge-specific, and friend-based leaderboards
+- Real-time position updates with optimistic UI
+- Multiple ranking algorithms (points, streaks, completion percentage)
+- Animated transitions for position changes
+- Custom time frame filtering (daily, weekly, monthly, all-time)
+- Personal records tracking with notifications
+- Performance graphs with trend analysis
+- Head-to-head comparison feature
+- Tournament bracket visualization for elimination challenges
+- Achievable milestone indicators along progress path
+- Category-specific leaderboards for diverse competition
+- Exportable leaderboard data for sharing
+- Personalized performance insights
+- Virtual podium for top performers with rewards"
+
+### 15. Achievement & Gamification System
+
+"Create a comprehensive achievement system with:
+- Multi-tiered achievement framework with progression
+- Surprise achievements for unexpected milestones
+- Visual badge design with level indicators
+- Points system with redemption options
+- Streak-based multipliers for consistent performance
+- Daily challenges for continuous engagement
+- Achievement collections with completion bonuses
+- Profile showcase for favorite achievements
+- Achievement sharing with customizable cards
+- Statistical tracking behind each achievement
+- Community achievements requiring group effort
+- Location-based achievements using geofencing
+- Seasonal achievements tied to real-world events
+- Achievement suggestions based on user behavior
+- Achievement unlock animations with haptic feedback"
+
+### 16. Notification & Communication System
+
+"Implement a sophisticated notification system with:
+- Push notification integration with scheduled delivery
+- In-app notification center with read/unread status
+- Notification preferences with fine-grained control
+- Intelligent batching to prevent notification fatigue
+- Deep linking to relevant app sections
+- Rich notifications with action buttons
+- Silent notifications for non-critical updates
+- Personalized notification timing based on user activity
+- Challenge reminder system with smart scheduling
+- Group messaging for challenge participants
+- Comment system on progress updates
+- Reaction system for social engagement
+- @mention functionality in comments
+- Notification analytics to optimize engagement
+- Critical alerts configuration for important deadlines"
+
+## Phase 5: Finalization & Enhancement
+
+### 17. Challenge Completion & Rewards
+
+"Develop the challenge completion system with:
+- Automated end-date processing with grace periods
+- Final verification with enhanced security measures
+- Multi-criteria success evaluation based on challenge type
+- Reward distribution with transaction receipts
+- Celebration experience with animations and sound
+- Challenge recap with performance statistics
+- Certificate generation for completed challenges
+- Social sharing of accomplishments
+- Follow-up challenge recommendations
+- Participant feedback collection
+- Challenge recreation with modifications option
+- Long-term progress visualization across challenges
+- Success streak tracking across multiple challenges
+- Reward multipliers for consecutive completions
+- Tax reporting consideration for monetary rewards"
+
+### 18. UI/UX Refinement & Design System
+
+"Enhance the app's UI/UX with:
+- Comprehensive design system with component library
+- Accessibility compliance (WCAG 2.1 AA standards)
+- Voice control integration for hands-free operation
+- Responsive layouts for various screen sizes
+- Custom animations with React Native Reanimated
+- Micro-interactions for enhanced feedback
+- Haptic feedback system for important actions
+- Skeleton screens for all data-dependent components
+- Error states with actionable recovery options
+- Empty states with contextual guidance
+- Progress indicators for all asynchronous operations
+- Onboarding flows with feature discovery
+- Tutorial system with skip and recall options
+- Theme support (light/dark/system) with smooth transitions
+- Typography system with readable scales and dynamic sizing"
+
+### 19. Performance Optimization & Technical Refinement
+
+"Optimize app performance with:
+- Memoization strategy for expensive calculations
+- List virtualization for all scrolling interfaces
+- Image optimization with progressive loading
+- Code splitting for reduced initial load time
+- React Native Reanimated for native-thread animations
+- Asset preloading for critical resources
+- Navigation state optimization
+- Network request batching and prioritization
+- Background fetch configuration for fresh data
+- Query optimization with data normalization
+- Storage strategy for offline capability
+- Bundle size reduction techniques
+- Memory leak prevention with proper cleanup
+- Battery usage optimization
+- React DevTools integration for development"
+
+### 20. Testing & Quality Assurance
+
+"Implement comprehensive testing with:
+- Unit tests for business logic using Jest
+- Component tests with React Native Testing Library
+- Integration tests for API interactions with MSW
+- End-to-end tests with Detox for critical flows
+- Snapshot testing for UI components
+- Performance testing with metrics tracking
+- Accessibility testing with automated tools
+- A/B testing framework for feature experiments
+- User testing protocols and feedback collection
+- Stress testing for concurrent operations
+- Error reporting with Sentry integration
+- Analytics implementation with segment or Firebase
+- Crash reporting with symbolication
+- CI/CD pipeline with automatic testing on PRs
+- Test coverage reporting and enforcement"
+
+### 21. Deployment & Store Submission
+
+"Prepare the app for production deployment with:
+- App signing key management for iOS and Android
+- App icon generation in all required resolutions
+- Splash screen design with smooth transition
+- App Store screenshots with localized captions
+- Feature graphic and promotional material creation
+- App Store description optimization for discoverability
+- Privacy policy and terms of service implementation
+- Configuration for TestFlight and Play Store testing
+- Versioning strategy with semantic versioning
+- Release notes generation from commit history
+- Staged rollout configuration for Android
+- In-app review prompting at appropriate moments
+- App Store ASO (App Store Optimization) strategy
+- Analytics for installation attribution
+- Post-launch monitoring dashboard"
+
+## Bonus Prompts for Advanced Features
+
+### 22. Blockchain Integration & Smart Contracts
+
+"Implement secure blockchain integration with:
+- Multi-wallet support (Phantom, Solflare, etc.)
+- Wallet connection with deep linking support
+- On-chain stake management with escrow contracts
+- Custom SPL token for in-app currency
+- Transaction signing with proper security measures
+- Gas fee optimization strategies
+- Solana Program integration for challenge logic
+- State synchronization between app and blockchain
+- Verify program deployment with proper permissions
+- Program upgrade strategy with backward compatibility
+- Merkle tree implementation for efficient verification
+- Cross-chain bridges for multi-blockchain support
+- NFT rewards for achievement milestones
+- Decentralized identity integration
+- Audit preparation for smart contracts"
+
+### 23. Social Engagement & Community Building
+
+"Expand the social experience with:
+- Social graph implementation with follow/friend system
+- Activity feed with customizable content preferences
+- Challenge discovery through social connections
+- Group challenges with team formation mechanics
+- Direct messaging with encryption and media support
+- Comment threads on challenges and updates
+- Reaction system with animated feedback
+- Content moderation tools and reporting system
+- Community challenges with collaborative goals
+- Location-based challenge discovery
+- Integration with social platforms (share to stories)
+- Social proof mechanisms for accountability
+- Influence scoring based on challenge success
+- Community guidelines and enforcement system
+- Ambassador program for community leaders"
+
+### 24. Advanced Analytics & Insights
+
+"Implement comprehensive analytics with:
+- Personal analytics dashboard with performance trends
+- Habit formation visualization with streak analysis
+- Goal progression forecasting based on current pace
+- Success probability calculation for active challenges
+- Behavioral insights with personalized recommendations
+- Pattern recognition for optimal performance times
+- Challenge comparison across different categories
+- Correlation analysis between challenges and outcomes
+- Custom reports with exportable data
+- Progress heatmaps for visual tracking
+- Performance breakdown by time periods
+- Performance factor analysis (sleep, nutrition correlation)
+- Comparative analysis with similar users
+- Sentiment analysis on progress updates
+- Motivation factor identification through pattern analysis"
+
+### 25. Monetization & Business Model Implementation
+
+"Implement sustainable monetization with:
+- Subscription tier management with feature gates
+- In-app purchase system for virtual currency
+- Premium challenge templates with advanced features
+- Sponsorship system for branded challenges
+- Referral program with reward distribution
+- Revenue sharing for challenge creators
+- Trial period management with conversion optimization
+- Receipt validation and subscription status tracking
+- Promo code system for marketing campaigns
+- Churn prediction and retention strategies
+- LTV calculation and optimization
+- Payment provider integration (Stripe, PayPal)
+- Tax calculation and reporting compliance
+- Subscription analytics dashboard
+- Price localization for international markets"
