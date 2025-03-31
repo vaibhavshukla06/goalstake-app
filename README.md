@@ -70,7 +70,11 @@ app/
 ├── utils/                # Utility functions
 │   ├── context/          # React context providers
 │   └── hooks/            # Custom React hooks
-└── .storybook/           # Storybook configuration
+├── supabase/             # Supabase configuration
+│   ├── functions/        # Edge functions
+│   └── migrations/       # Database migrations
+├── scripts/              # Utility scripts
+└── docs/                 # Documentation
 ```
 
 ## Environment Setup
@@ -82,6 +86,46 @@ The application supports multiple environments:
 - **Production**: `npm run start:prod`
 
 Environment variables are managed through `.env.[environment]` files and the `app.config.js` configuration.
+
+For detailed instructions on environment setup, see [Environment Setup Documentation](docs/EnvironmentSetup.md).
+
+## Database Setup
+
+GoalStake uses Supabase for its backend. The database schema includes:
+
+- Users
+- Challenges
+- Stakes
+- Participants
+- Verifications
+- Transactions
+
+For more information on the database structure, see [Database Schema Documentation](docs/DatabaseSchema.md).
+
+```bash
+# Create a new Supabase project
+npm run supabase:create
+
+# Setup database schema
+npm run db:setup
+
+# Generate TypeScript types from database schema
+npm run generate:types
+```
+
+## Supabase Edge Functions
+
+The app uses Supabase Edge Functions for sensitive operations:
+
+- `process-payment`: Handles secure payment processing
+- `verify-submission`: Validates challenge submissions
+
+```bash
+# Deploy edge functions
+npm run functions:deploy:dev
+npm run functions:deploy:staging
+npm run functions:deploy:prod
+```
 
 ## Storybook
 
@@ -95,6 +139,25 @@ npm run storybook
 npm run storybook:start
 ```
 
+## Building for Production
+
+The app uses EAS (Expo Application Services) for building:
+
+```bash
+# Build for Android
+npm run build:android:dev
+npm run build:android:staging
+npm run build:android:prod
+
+# Build for iOS
+npm run build:ios:dev
+npm run build:ios:staging
+npm run build:ios:prod
+
+# Build for web
+npm run build:web
+```
+
 ## Progress
 
 This project is under active development. Current progress includes:
@@ -106,6 +169,8 @@ This project is under active development. Current progress includes:
 - Improved architecture with atomic design
 - Environment configuration
 - CI/CD setup with GitHub Actions
+- Supabase database schema and migrations
+- Edge functions for secure operations
 
 ## Contributing
 
