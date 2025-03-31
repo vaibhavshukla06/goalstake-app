@@ -4,7 +4,6 @@ module.exports = function(api) {
     presets: ['babel-preset-expo'],
     plugins: [
       'react-native-reanimated/plugin',
-      'babel-plugin-inline-dotenv',
       [
         'module-resolver',
         {
@@ -12,7 +11,6 @@ module.exports = function(api) {
           extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
           alias: {
             '@': './',
-            '@app': './app',
             '@components': './components',
             '@constants': './constants',
             '@services': './services',

@@ -1,5 +1,8 @@
 import 'dotenv/config';
 
+// Explicitly set the environment variable before importing anything else
+process.env.EXPO_ROUTER_APP_ROOT = './app';
+
 // Get environment variables based on the APP_ENV
 const getEnvVars = () => {
   // Default to development environment
@@ -30,14 +33,17 @@ const getEnvVars = () => {
     },
     ios: {
       supportsTablet: true,
-      bundleIdentifier: `com.goalstake.app.${env}`
+      bundleIdentifier: "com.goalstake.app.dev"
     },
     android: {
       adaptiveIcon: {
         foregroundImage: "./assets/images/adaptive-icon.png",
         backgroundColor: "#ffffff"
       },
-      package: `com.goalstake.app.${env}`
+      package: "com.goalstake.app.dev"
+    },
+    web: {
+      bundler: "metro"
     },
     plugins: [
       "expo-router"
@@ -45,6 +51,7 @@ const getEnvVars = () => {
     experiments: {
       typedRoutes: true
     },
+    newArchEnabled: true,
     extra: {
       supabaseUrl: process.env.EXPO_PUBLIC_SUPABASE_URL,
       supabaseAnonKey: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY,
@@ -54,6 +61,8 @@ const getEnvVars = () => {
       eas: {
         projectId: "your-eas-project-id",
       },
+      // Explicitly set the app root for expo-router
+      EXPO_ROUTER_APP_ROOT: "app",
     },
     updates: {
       fallbackToCacheTimeout: 0,

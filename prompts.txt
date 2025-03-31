@@ -49,6 +49,16 @@
 - Generate TypeScript types from database schema using supabase-js codegen
 - Implement edge functions for sensitive operations"
 
+Multi-environment project setup (dev/staging/prod) - though I see environment files (.env.development, .env.staging, .env.production)
+Actual database schema in Supabase with proper foreign key constraints
+Row-level security (RLS) policies
+Database triggers for automated calculations and notifications
+Indexing strategy for query optimization
+Real-time subscriptions setup
+Database migrations for version control
+Generate TypeScript types directly from Supabase schema (the current types seem manually created)
+Edge functions for sensitive operations
+
 ### 4. Authentication & Security Implementation
 
 "Implement enterprise-grade authentication using Supabase Auth with:

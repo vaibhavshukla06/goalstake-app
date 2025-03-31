@@ -1,83 +1,67 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
-import { 
-  Home, 
-  Trophy, 
-  Plus, 
-  Award, 
-  User,
-  Activity
-} from 'lucide-react-native';
-import { colors } from '@/constants/colors';
+import { Text } from 'react-native';
+
+function TabIcon({ label, color }: { label: string; color: string }) {
+  const icons: Record<string, string> = {
+    'Home': '🏠',
+    'Challenges': '🎯',
+    'Create': '➕',
+    'Social': '👥',
+    'Leaderboard': '🏆',
+    'Profile': '👤',
+  };
+  
+  return <Text style={{ fontSize: 20, color }}>{icons[label] || '📱'}</Text>;
+}
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: colors.primary,
-        tabBarInactiveTintColor: colors.textSecondary,
-        tabBarStyle: {
-          backgroundColor: colors.background,
-          borderTopColor: colors.border,
-        },
-        tabBarLabelStyle: {
-          fontSize: 12,
-          fontWeight: '500',
-        },
-        headerStyle: {
-          backgroundColor: colors.background,
-        },
-        headerTitleStyle: {
-          fontWeight: '600',
-          color: colors.text,
-        },
+        tabBarActiveTintColor: '#5E72EB',
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, size }) => <Home size={size} color={color} />,
+          title: "Home",
+          tabBarIcon: ({ color }) => <TabIcon label="Home" color={color} />,
         }}
       />
-      
       <Tabs.Screen
         name="challenges"
         options={{
-          title: 'Challenges',
-          tabBarIcon: ({ color, size }) => <Trophy size={size} color={color} />,
+          title: "Challenges",
+          tabBarIcon: ({ color }) => <TabIcon label="Challenges" color={color} />,
         }}
       />
-      
       <Tabs.Screen
         name="create"
         options={{
-          title: 'Create',
-          tabBarIcon: ({ color, size }) => <Plus size={size} color={color} />,
+          title: "Create",
+          tabBarIcon: ({ color }) => <TabIcon label="Create" color={color} />,
         }}
       />
-      
-      <Tabs.Screen
-        name="leaderboard"
-        options={{
-          title: 'Leaderboard',
-          tabBarIcon: ({ color, size }) => <Award size={size} color={color} />,
-        }}
-      />
-      
       <Tabs.Screen
         name="social-feed"
         options={{
-          title: 'Social',
-          tabBarIcon: ({ color, size }) => <Activity size={size} color={color} />,
+          title: "Social",
+          tabBarIcon: ({ color }) => <TabIcon label="Social" color={color} />,
         }}
       />
-      
+      <Tabs.Screen
+        name="leaderboard"
+        options={{
+          title: "Leaderboard",
+          tabBarIcon: ({ color }) => <TabIcon label="Leaderboard" color={color} />,
+        }}
+      />
       <Tabs.Screen
         name="profile"
         options={{
-          title: 'Profile',
-          tabBarIcon: ({ color, size }) => <User size={size} color={color} />,
+          title: "Profile",
+          tabBarIcon: ({ color }) => <TabIcon label="Profile" color={color} />,
         }}
       />
     </Tabs>

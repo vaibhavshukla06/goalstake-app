@@ -1,13 +1,32 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Platform } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Platform, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Stack, useRouter } from 'expo-router';
 import { AlertTriangle, RefreshCcw, Home } from 'lucide-react-native';
 import { Button } from '@/components/Button';
 import { colors } from '@/constants/colors';
+import { router } from 'expo-router';
 
-export function ErrorBoundary({ children }) {
-  return children;
+interface ErrorBoundaryProps {
+  children?: React.ReactNode;
+  error: Error;
+}
+
+export function ErrorBoundary({ error }: ErrorBoundaryProps) {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Something went wrong</Text>
+      <Text style={styles.subtitle}>{error.message}</Text>
+      <Pressable 
+        style={styles.button}
+        onPress={() => {
+          router.replace('/(tabs)');
+        }}
+      >
+        <Text style={styles.buttonText}>Try Again</Text>
+      </Pressable>
+    </View>
+  );
 }
 
 export default function ErrorScreen({ error }: { error: Error }) {
@@ -56,12 +75,15 @@ Stack: ${error.stack || 'No stack trace available'}
           <Text style={styles.errorMessage}>{error.message}</Text>
         </View>
         
-        <Button 
-          title="Try Again" 
-          onPress={resetApp}
-          icon={<RefreshCcw size={18} color={colors.background} />}
+        <Pressable 
           style={styles.button}
-        />
+          onPress={() => {
+            // Reset to home screen
+            router.replace('/(tabs)');
+          }}
+        >
+          <Text style={styles.buttonText}>Try Again</Text>
+        </Pressable>
         
         <Button 
           title="Go to Home" 
@@ -93,7 +115,32 @@ Stack: ${error.stack || 'No stack trace available'}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 16,
+    backgroundColor: '#fff',
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#666',
+    marginBottom: 24,
+    textAlign: 'center',
+  },
+  button: {
+    backgroundColor: '#5E72EB',
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
   },
   content: {
     flex: 1,
@@ -104,13 +151,6 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     marginVertical: 40,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: colors.text,
-    textAlign: 'center',
-    marginBottom: 16,
   },
   message: {
     fontSize: 16,
@@ -130,10 +170,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.error,
     fontFamily: Platform.OS === 'ios' ? 'Menlo' : 'monospace',
-  },
-  button: {
-    marginBottom: 12,
-    width: '100%',
   },
   detailsContainer: {
     backgroundColor: colors.cardAlt || colors.card || '#f5f5f5',
